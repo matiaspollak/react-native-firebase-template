@@ -2,7 +2,7 @@ import { userContext } from '../../App.js';
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { firebase } from "../firebase_config"
-import styles from "./styles"
+import styles from "../styles"
 
 export class HomeScreen extends React.Component {
     //currently only displays user info. Customize here!

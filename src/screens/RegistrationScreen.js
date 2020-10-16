@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { firebase } from "../firebase_config"
-import styles from './styles';
+import styles from '../styles';
 
 export class RegistrationScreen extends React.Component {
 
