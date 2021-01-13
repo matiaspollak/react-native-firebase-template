@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { firebase } from "../firebase_config"
 import styles from "../styles.js"
+
 export class LoginScreen extends React.Component {
 
   constructor(props) {

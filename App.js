@@ -7,11 +7,15 @@ import { firebase } from './src/firebase_config'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
+
 // Import any new screens you make here
 import { HomeScreen } from './src/screens/HomeScreen.js';
 import { LoginScreen } from './src/screens/LoginScreen.js';
 import { RegistrationScreen } from './src/screens/RegistrationScreen.js';
 import { LoadingScreen } from './src/screens/LoadingScreen.js';
+import { ProfileScreen } from './src/screens/ProfileScreen.js';
+import { AddScreen } from './src/screens/AddScreen.js';
+import { SearchScreen } from './src/screens/SearchScreen.js';
 
 // cretes a component that makes navigation between screens prettier
 const Stack = createStackNavigator();
@@ -50,9 +54,20 @@ export default class App extends React.Component {
               // if there is a user, load the regular screens, starting with Home.
               // this one looks different because we have to pass the user
               // data to the home screen. You can add more screens here by copying this.
+              <>
               <Stack.Screen name="Home">
                 {props => <HomeScreen {...props} user={this.state.user} />}
               </Stack.Screen>
+              <Stack.Screen name="Profile">
+              {props => <ProfileScreen {...props} user={this.state.user} />}
+              </Stack.Screen>
+              <Stack.Screen name="Add">
+              {props => <AddScreen {...props} user={this.state.user} />}
+              </Stack.Screen>
+              <Stack.Screen name="Search">
+              {props => <SearchScreen {...props} user={this.state.user} />}
+              </Stack.Screen>
+            </>
             )
           }
         </Stack.Navigator>

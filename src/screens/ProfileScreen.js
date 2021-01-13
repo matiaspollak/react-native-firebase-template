@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { AppRegistry, Text, View, StyleSheet, Image, TextInput, ImageBackground, TouchableHighlight, Alert, Dimensions } from 'react-native';
 import Constants from 'expo-constants';
 
-export class HomeScreen extends React.Component {
+export class ProfileScreen extends React.Component {
     //currently only displays user info. Customize here!
 
     constructor(props) {
@@ -17,9 +17,6 @@ export class HomeScreen extends React.Component {
         // saves the user data that was passed in by the App when it opened this
         this.user = props.user;
     }
-
-
-
     render() {
         return (
             <View style={styles.container}>
@@ -70,33 +67,32 @@ export class HomeScreen extends React.Component {
                         </Text>
                     </View>
                 </TouchableHighlight>
-
                 </View>
-                <View style={styles.container2}>
-                <Text style={styles.centerText}>
-                    Welcome users! This program is designed for that small population in the modern world that<br />
-                    likes to read. This is meant to be a tool for those who wish to learn and be transported to<br />
-                    a magical world with the use of words and writing. It is meant to inspire and to encourage reading in modern society.<br />
-                    Have fun. Read.
+                <View style={styles.row2}>
+                <View style={styles.column}>
+                <TouchableHighlight
+                    onPress={this.goSearch}
+                >
+                <Image
+                    source={{ uri: 'https://codehs.com/uploads/4701f3f1623febd7bf14890531037569' }}
+                    style={{ height: 400, width: 400 }}
+                />
+                </TouchableHighlight>
+                </View>
+                <View style={styles.column}>
+                <Text style={styles.profileText}>
+                    User ID: {this.user.id}<br /> <br />
+                    User name: {this.user.fullName}<br /> <br />
+                    User email: {this.user.email}<br /> <br />
+                    User Favorite Genre: {this.user.favoriteGenre}<br /> <br />
+                    User Favorite Book: {this.user.favoriteBook}
                 </Text>
                 </View>
-                <TouchableHighlight
-                        onPress={this.onLogoutPress}
-                    >
-                        <View style={styles.footerView}>
-                    <Text style={styles.footerText}>
-                        Not you?&nbsp;
-                        <Text style={styles.footerLink}>
-                            Sign out
-                        </Text>
-                    </Text>
                 </View>
-                    </TouchableHighlight>
-                    </ImageBackground>
+                </ImageBackground>
             </View>
         )
     }
-
     goHome = (e) => {
         this.navigation.navigate('Home')
       }
@@ -109,10 +105,4 @@ export class HomeScreen extends React.Component {
     goSearch = (e) => {
         this.navigation.navigate('Search')
       }
-    // Logout function
-    onLogoutPress() {
-        firebase
-            .auth()
-            .signOut();
-    }
 }

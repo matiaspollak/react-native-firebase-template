@@ -12,7 +12,9 @@ export class RegistrationScreen extends React.Component {
         this.navigation = props.navigation;
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            favoriteGenre: "",
+            favoriteBook: ""
         }
     }
 
@@ -44,6 +46,24 @@ export class RegistrationScreen extends React.Component {
                     placeholder='Password'
                     onChangeText={(text) => this.setState({ password: text })}
                     value={this.state.password}
+                    underlineColorAndroid="transparent"
+                    autoCapitalize="none"
+                />
+                <TextInput
+                    style={styles.textInput}
+                    placeholderTextColor="#aaaaaa"
+                    placeholder='Favorite Genre'
+                    onChangeText={(text) => this.setState({ favoriteGenre: text })}
+                    value={this.state.favoriteGenre}
+                    underlineColorAndroid="transparent"
+                    autoCapitalize="none"
+                />
+                <TextInput
+                    style={styles.textInput}
+                    placeholderTextColor="#aaaaaa"
+                    placeholder='Favorite Book'
+                    onChangeText={(text) => this.setState({ favoriteBook: text })}
+                    value={this.state.favoriteBook}
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
@@ -81,6 +101,8 @@ export class RegistrationScreen extends React.Component {
                     id: response.user.uid,
                     email: this.state.email,
                     fullName: this.state.fullName,
+                    favoriteGenre: this.state.favoriteGenre,
+                    favoriteBook: this.state.favoriteBook,
                 }
                 firebase.database()
                     .ref("/users")

@@ -3,11 +3,15 @@ import '@firebase/auth';
 import '@firebase/database';
 
 const firebaseConfig = {
-    apiKey: 'AIzaSyAW2DijnbVKMCNpMWUTNdl3BZkHTjUdurU', //found in Console
-    authDomain: 'test-project-dd16a.firebaseapp.com', //projectID.firebaseapp.com
-    databaseURL: 'https://test-project-dd16a.firebaseio.com', // https://project-id.firebaseio.com
-    projectId: 'test-project-dd16a', //project ID
-};
+    apiKey: "AIzaSyCWSezW_UHOulJ0I_DPFdMl3QUDZnnIx34",
+    authDomain: "book-sn.firebaseapp.com",
+    databaseURL: "https://book-sn.firebaseio.com",
+    projectId: "book-sn",
+    storageBucket: "book-sn.appspot.com",
+    messagingSenderId: "410143433142",
+    appId: "1:410143433142:web:5ccc997e0ce2ad2348a117",
+    measurementId: "G-NP037NGWZB"
+  };
 
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
