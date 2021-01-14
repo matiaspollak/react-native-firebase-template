@@ -71,6 +71,16 @@ export class HomeScreen extends React.Component {
                     </View>
                 </TouchableHighlight>
 
+                <TouchableHighlight
+                    onPress={this.goLeft}
+                >
+                    <View style={styles.secondButton}>
+                        <Text style={styles.buttonText}>
+                        Report Left Book
+                        </Text>
+                    </View>
+                </TouchableHighlight>
+
                 </View>
                 <View style={styles.container2}>
                 <Text style={styles.centerText}>
@@ -105,7 +115,7 @@ export class HomeScreen extends React.Component {
             </View>
         )
     }
-
+ 
     goHome = (e) => {
         this.navigation.navigate('Home')
       }
@@ -120,6 +130,9 @@ export class HomeScreen extends React.Component {
       }
     goRecommend = (e) => {
         this.navigation.navigate('Recommend')
+      }
+    goLeft = (e) => {
+        this.navigation.navigate('Left')
       }
     // Logout function
     onLogoutPress() {

@@ -43,7 +43,7 @@ export class LoginScreen extends React.Component {
           Log in
         </TouchableOpacity>
         <View style={styles.footerView}>
-          <Text style={styles.footerText}>
+          <Text style={styles.footerText2}>
             Don't have an account?&nbsp;
               <Text style={styles.footerLink} onPress={this.onFooterLinkPress}>
               Sign up

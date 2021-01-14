@@ -41,49 +41,13 @@ constructor(props) {
 
 
 addBook (title, author, genre, pages, rating, plotRating, age, difficulty, interest, notPages, finished) {
-    if (!title) return;
-    if (firebase.database().ref('/books').child(title) !== null) {
-        alert('This book has already been added, you can choose to review it in the Search for books/review section.')
+    if (!title) {
+        return;
     }
-    const newBook = firebase.database().ref().child("/books").push();
-    const key = newBook.key;
-    firebase
-            .auth()
-            newBook
-            .catch(error => {
-                alert(error)
-            })
-            .then(response => {
-                if (!title) return;
-                const titleName = {
-                    title: title
-                }
-                const bookData = {
-                    author: author,
-                    genre: genre, 
-                    pages: pages, 
-                    rating: rating, 
-                    ratingTotal: rating,
-                    plotRating: plotRating, 
-                    plotRatingTotal: plotRating,
-                    age: age, 
-                    difficulty: difficulty, 
-                    difficultyTotal: difficulty,
-                    interest: interest, 
-                    interestTotal: interest,
-                    notPages: notPages, 
-                    finished: finished,
-                    reviewCount: 1
-                }
-                firebase.database()
-                    newBook.set(bookData);
-                    
-            })
-            const query = firebase.database().ref('/books').orderByChild('age').equalTo(23);
-            query.once( 'value', data => {
-            data.forEach(userSnapshot => {
-            let userKey = userSnapshot.key;
-
+    const ref = firebase.database().ref('/books').child(title).child('/genre');
+    ref.on('value', snapshot => {
+        const situation = snapshot.exists();
+    if (situation == false) {
         firebase.database().ref('/books').child(title).update({
             author: author,
             genre: genre, 
@@ -118,11 +82,68 @@ addBook (title, author, genre, pages, rating, plotRating, age, difficulty, inter
             // Success
           }
         }
-    });
-    firebase.database().ref('/books').child(key).remove();
+    //});
+    // firebase.database().ref('/books').child(key).remove();
     alert(title + ' has been added!');
-});;
-};
+        
+    } else if (situation == true) {
+        alert('This book has already been added, you can choose to review it in the Search for books/review section.');
+        this.setState({
+            title: "",
+            author: "",
+            genre: "", 
+            pages: "", 
+            rating: "", 
+            plotRating: "", 
+            age: "", 
+            difficulty: "", 
+            interest: "", 
+            notPages: ""
+    });
+
+   /**  const newBook = firebase.database().ref().child("/books").push();
+    const key = newBook.key;
+    firebase
+            .auth()
+            newBook
+            .catch(error => {
+                alert(error)
+            })
+            .then(response => {
+                if (!title) return;
+                const titleName = {
+                    title: title
+                }
+                const bookData = {
+                    author: author,
+                    genre: genre, 
+                    pages: pages, 
+                    rating: rating, 
+                    ratingTotal: rating,
+                    plotRating: plotRating, 
+                    plotRatingTotal: plotRating,
+                    age: age, 
+                    difficulty: difficulty, 
+                    difficultyTotal: difficulty,
+                    interest: interest, 
+                    interestTotal: interest,
+                    notPages: notPages, 
+                    finished: finished,
+                    reviewCount: 1
+                }
+                firebase.database()
+                    newBook.set(bookData);
+                    
+            }) */
+            /** const query = firebase.database().ref('/books');
+            query.once( 'value', data => {
+            data.forEach(userSnapshot => { */
+
+        
+    }
+})
+};;//);;
+//};
       
     render () {
         return (
@@ -167,10 +188,20 @@ addBook (title, author, genre, pages, rating, plotRating, age, difficulty, inter
 
                 <TouchableHighlight
                     onPress={this.goSearch}
-                >
+                > 
                     <View style={styles.secondButton}>
                         <Text style={styles.buttonText}>
                         Search for books/review
+                        </Text>
+                    </View>
+                </TouchableHighlight>
+
+                <TouchableHighlight
+                    onPress={this.goLeft}
+                >
+                    <View style={styles.secondButton}>
+                        <Text style={styles.buttonText}>
+                        Report Left Book
                         </Text>
                     </View>
                 </TouchableHighlight>
@@ -304,6 +335,9 @@ addBook (title, author, genre, pages, rating, plotRating, age, difficulty, inter
       }
     goSearch = (e) => {
         this.navigation.navigate('Search')
+      }
+    goLeft = (e) => {
+        this.navigation.navigate('Left')
       }
 }
           

@@ -17,7 +17,7 @@ export class SearchScreen extends React.Component {
         this.navigation = props.navigation;
         // saves the user data that was passed in by the App when it opened this
         this.user = props.user;
-        this.state = {
+        this.state = { 
             initial: 'block',
             searchBox: 'none',
             details: 'none',
@@ -322,6 +322,16 @@ searchBook (search) {
                     </View>
                 </TouchableHighlight>
 
+                <TouchableHighlight
+                    onPress={this.goLeft}
+                >
+                    <View style={styles.secondButton}>
+                        <Text style={styles.buttonText}>
+                        Report Left Book
+                        </Text>
+                    </View>
+                </TouchableHighlight>
+
                 </View>
                 
                 <View style={styles.row}>
@@ -457,5 +467,8 @@ searchBook (search) {
       }
     goSearch = (e) => {
         this.navigation.navigate('Search')
+      }
+    goLeft = (e) => {
+        this.navigation.navigate('Left')
       }
 }

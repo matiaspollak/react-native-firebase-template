@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { AppRegistry, Text, View, StyleSheet, Image, TextInput, ImageBackground, TouchableHighlight, Alert, Dimensions } from 'react-native';
 import Constants from 'expo-constants';
 
-export class ProfileScreen extends React.Component {
+export class LeftScreen extends React.Component {
     //currently only displays user info. Customize here!
 
     constructor(props) {
@@ -16,7 +16,29 @@ export class ProfileScreen extends React.Component {
         this.navigation = props.navigation;
         // saves the user data that was passed in by the App when it opened this
         this.user = props.user;
+        this.state = {
+            title: '',
+            page:''
+        };
+        this.submit = this.submit.bind(this);
     }
+
+ submit (title, page) {
+    firebase.database()
+    .ref("/users")
+    .child(firebase.auth().currentUser.uid)
+    .child('/left')
+    .child(title)
+    .set({
+        pageLeft: page
+    });
+    this.setState({
+        title: '',
+        page:''
+    })
+    alert('The information has been sent!');
+ }
+
     render() {
         return (
             <View style={styles.container}>
@@ -77,45 +99,55 @@ export class ProfileScreen extends React.Component {
                         </Text>
                     </View>
                 </TouchableHighlight>
+
                 </View>
-                <View style={styles.row2}>
-                <View style={styles.column}>
-                <TouchableHighlight
-                    onPress={this.goSearch}
-                >
-                <Image
-                    source={{ uri: 'https://codehs.com/uploads/4701f3f1623febd7bf14890531037569' }}
-                    style={{ height: 400, width: 400 }}
+                <TextInput
+                    placeholder='Title'
+                    style={styles.textInput}
+                    placeholderTextColor="#aaaaaa"
+                    onChangeText={(text) => this.setState({ title: text })}
+                    value={this.state.title}
+                    underlineColorAndroid="transparent"
+                    autoCapitalize="none"
                 />
+                <TextInput
+                    placeholder='Page where it was left'
+                    style={styles.textInput}
+                    placeholderTextColor="#aaaaaa"
+                    onChangeText={(text) => this.setState({ page: text })}
+                    value={this.state.page}
+                    underlineColorAndroid="transparent"
+                    autoCapitalize="none"
+                />
+                <TouchableHighlight
+                    onPress={() => this.submit(this.state.title, this.state.page)}
+                >
+                    <View style={styles.secondButton}>
+                        <Text style={styles.buttonText}>
+                        Submit
+                        </Text>
+                    </View>
                 </TouchableHighlight>
-                </View>
-                <View style={styles.column}>
-                <Text style={styles.profileText}>
-                    User ID: {this.user.id}<br /> <br />
-                    User name: {this.user.fullName}<br /> <br />
-                    User email: {this.user.email}<br /> <br />
-                    User Favorite Genre: {this.user.favoriteGenre}<br /> <br />
-                    User Favorite Book: {this.user.favoriteBook}
-                </Text>
-                </View>
-                </View>
                 </ImageBackground>
-            </View>
-        )
+                </View>
+                )}
+  goHome = (e) => {
+    this.navigation.navigate('Home')
     }
-    goHome = (e) => {
-        this.navigation.navigate('Home')
-      }
-    goProfile = (e) => {
-        this.navigation.navigate('Profile')
-      }
-    goAdd = (e) => {
-        this.navigation.navigate('Add')
-      }
-    goSearch = (e) => {
-        this.navigation.navigate('Search')
-      }
-    goLeft = (e) => {
-        this.navigation.navigate('Left')
-      }
-}
+  goProfile = (e) => {
+    this.navigation.navigate('Profile')
+    }
+  goAdd = (e) => {
+    this.navigation.navigate('Add')
+    }
+  goSearch = (e) => {
+    this.navigation.navigate('Search')
+    }
+  goRecommend = (e) => {
+    this.navigation.navigate('Recommend')
+    }
+  goLeft = (e) => {
+    this.navigation.navigate('Left')
+    }
+            
+            }

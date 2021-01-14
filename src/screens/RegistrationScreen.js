@@ -43,7 +43,7 @@ export class RegistrationScreen extends React.Component {
                     style={styles.textInput}
                     placeholderTextColor="#aaaaaa"
                     secureTextEntry
-                    placeholder='Password'
+                    placeholder='Password (Minimum 6 characters)'
                     onChangeText={(text) => this.setState({ password: text })}
                     value={this.state.password}
                     underlineColorAndroid="transparent"
@@ -74,7 +74,7 @@ export class RegistrationScreen extends React.Component {
                     Register
                 </TouchableOpacity>
                 <View style={styles.footerView}>
-                    <Text style={styles.footerText}>Have an account?&nbsp;
+                    <Text style={styles.footerText2}>Have an account?&nbsp;
                     <Text style={styles.footerLink} onPress={() => this.onFooterLinkPress()}>
                             Log in!
                         </Text>
@@ -89,10 +89,8 @@ export class RegistrationScreen extends React.Component {
     }
 
     onRegisterPress() {
-        firebase
-            .auth()
-            .createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .catch(error => {
+        const create = firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
+            create.catch(error => {
                 alert(error)
             })
             .then(response => {
@@ -107,8 +105,8 @@ export class RegistrationScreen extends React.Component {
                 firebase.database()
                     .ref("/users")
                     .child(response.user.uid)
-                    .set(userData);
+                    .update(userData)
             });
-
+            
     }
 }
