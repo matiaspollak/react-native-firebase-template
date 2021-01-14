@@ -79,6 +79,15 @@ export class HomeScreen extends React.Component {
                     a magical world with the use of words and writing. It is meant to inspire and to encourage reading in modern society.<br />
                     Have fun. Read.
                 </Text>
+                <TouchableHighlight
+                    onPress={this.goRecommend}
+                >
+                    <View style={styles.secondButton3}>
+                        <Text style={styles.buttonText}>
+                        Get a recommendation
+                        </Text>
+                    </View>
+                </TouchableHighlight>
                 </View>
                 <TouchableHighlight
                         onPress={this.onLogoutPress}
@@ -108,6 +117,9 @@ export class HomeScreen extends React.Component {
       }
     goSearch = (e) => {
         this.navigation.navigate('Search')
+      }
+    goRecommend = (e) => {
+        this.navigation.navigate('Recommend')
       }
     // Logout function
     onLogoutPress() {

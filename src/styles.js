@@ -24,7 +24,8 @@ export default StyleSheet.create({
         paddingLeft: 16
     },
     textInput: {
-        height: deviceHeight/20,
+        height: deviceHeight/18,
+        width: deviceWidth*9/10,
         borderRadius: 5,
         fontSize: 20,
         overflow: 'hidden',
@@ -81,7 +82,7 @@ export default StyleSheet.create({
     },
     footerText: {
         fontSize: 16,
-        color: '#2e2e2d'
+        color: 'white'
     },
     footerLink: {
         color: "#788eec",
@@ -117,6 +118,18 @@ export default StyleSheet.create({
         borderWidth: 2,
         margin: 4,
     },
+    secondButton3: {
+      height: deviceHeight/9, 
+      width: deviceWidth/9,
+      backgroundColor: 'gray',
+      justifyContent: 'center',
+      textAlign: 'center',
+      alignItems: 'center',
+      borderRadius: 4,
+      borderColor: 'gray',
+      borderWidth: 2,
+      margin: 8
+  },
     container2: {
         justifyContent: 'center',
         textAlign: 'center',
@@ -174,21 +187,22 @@ export default StyleSheet.create({
       },
       searchBoxAnswer: {
         backgroundColor: 'white',
-        height: deviceHeight/8,
+        height: deviceHeight/7,
         width: deviceWidth*9/10,
-        boderWidth: 10,
+        borderWidth: 10,
         borderColor: 'black',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        margin: 10
       },
       resultDivide1: {
-        marginLeft: 100,
+        marginLeft: 50,
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center'
       },
       resultDivide2: {
         flexDirection: 'row',
-        marginLeft: 500,
+        marginLeft: 50,
         alignItems: 'center',
         justifyContent: 'center',
       },
@@ -235,5 +249,20 @@ export default StyleSheet.create({
         width: deviceWidth,
         justifyContent: 'center',
         alignItems: 'center'
+      },
+      column2: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        flexDirection: 'column',
+        height: deviceHeight,
+        width: deviceWidth
+      },
+      column3: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        height: deviceHeight*8/10,
+        width: deviceWidth
       }
 });

@@ -79,7 +79,7 @@ addBook (title, author, genre, pages, rating, plotRating, age, difficulty, inter
                     newBook.set(bookData);
                     
             })
-            const query = firebase.database().ref('/books').orderByChild('age').equalTo('23');
+            const query = firebase.database().ref('/books').orderByChild('age').equalTo(23);
             query.once( 'value', data => {
             data.forEach(userSnapshot => {
             let userKey = userSnapshot.key;
@@ -279,7 +279,7 @@ addBook (title, author, genre, pages, rating, plotRating, age, difficulty, inter
                 />
                 <TouchableHighlight
                     onPress={() => this.addBook(this.state.title, this.state.author, this.state.genre, this.state.pages,
-                        parseInt(this.state.rating), parseInt(this.state.plotRating), this.state.age, 
+                        parseInt(this.state.rating), parseInt(this.state.plotRating), parseInt(this.state.age), 
                         parseInt(this.state.difficulty), parseInt(this.state.interest), this.state.notPages, this.state.finished)}
                 >
                     <View style={styles.secondButton}>

@@ -16,6 +16,7 @@ import { LoadingScreen } from './src/screens/LoadingScreen.js';
 import { ProfileScreen } from './src/screens/ProfileScreen.js';
 import { AddScreen } from './src/screens/AddScreen.js';
 import { SearchScreen } from './src/screens/SearchScreen.js';
+import { RecommendationScreen } from './src/screens/RecommendationScreen.js';
 
 // cretes a component that makes navigation between screens prettier
 const Stack = createStackNavigator();
@@ -66,6 +67,9 @@ export default class App extends React.Component {
               </Stack.Screen>
               <Stack.Screen name="Search">
               {props => <SearchScreen {...props} user={this.state.user} />}
+              </Stack.Screen>
+              <Stack.Screen name="Recommend">
+              {props => <RecommendationScreen {...props} user={this.state.user} />}
               </Stack.Screen>
             </>
             )

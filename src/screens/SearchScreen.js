@@ -44,117 +44,103 @@ export class SearchScreen extends React.Component {
         this.accessGenre = this.accessGenre.bind(this);
         this.accessPages = this.accessPages.bind(this); 
         this.accessAge = this.accessAge.bind(this);
-        this.functionCombined = this.functionCombined.bind(this);
+
 
     };
     accessAuthor (search) {
-        firebase
-                .database()
-                .ref('/books')
-                .child(search)
-                .child('/author')
-                .once('value')
-                .then((snapshot) =>{
-                    const author = snapshot.val();
-                    () => this.setState ({
-                        author: author
-                    });
-                })
-    };
+        firebase.database().ref('/books').child(search).child('/author').once('value').then(snapshot => { 
+            const data = snapshot.val()
+            if (!data) {
+                alert('Jarvis: something is wrong');
+                return;
+            } else {
+                this.setState(state => ({
+                author: data
+                }));
+        }})};
     accessInterest (search) {
-        firebase
-                .database()
-                .ref('/books')
-                .child(search)
-                .child('/interest')
-                .once('value', snapshot => {
-                    const value = snapshot.val();
-                    () => this.setState ({
-                        interest: value
-                    });
-                })
+        firebase.database().ref('/books').child(search).child('/interest').once('value').then(snapshot => { 
+            const data = snapshot.val()
+            if (!data) {
+                alert('Jarvis: something is wrong');
+                return;
+            } else {
+                this.setState(state => ({
+                interest: data
+                }));
+        }})
     };
     accessDifficulty (search) {
-        firebase
-                .database()
-                .ref('/books')
-                .child(search)
-                .child('/difficulty')
-                .once('value', snapshot =>{
-                    const difficulty = snapshot.val();
-                    () => this.setState ({
-                        difficulty: difficulty
-                    });
-                })
+        firebase.database().ref('/books').child(search).child('/difficulty').once('value').then(snapshot => { 
+            const data = snapshot.val()
+            if (!data) {
+                alert('Jarvis: something is wrong');
+                return;
+            } else {
+                this.setState(state => ({
+                difficulty: data
+                }));
+        }})
     };
     accessRating (search) {
-        firebase
-                .database()
-                .ref('/books')
-                .child(search)
-                .child('/rating')
-                .once('value')
-                .then(snapshot =>{
-                    const rating = snapshot.val();
-                    () => this.setState ({
-                        rating: rating
-                    });
-                })
+        firebase.database().ref('/books').child(search).child('/rating').once('value').then(snapshot => { 
+            const data = snapshot.val()
+            if (!data) {
+                alert('Jarvis: something is wrong');
+                return;
+            } else {
+                this.setState(state => ({
+                rating: data
+                }));
+        }})
     };
     accessPlotRating (search) {
-        firebase
-                .database()
-                .ref('/books')
-                .child(search)
-                .child('/plotRating')
-                .once('value')
-                .then(snapshot =>{
-                    const plotRating = snapshot.val();
-                    () => this.setState ({
-                        plotRating: plotRating
-                    });
-                })
+        firebase.database().ref('/books').child(search).child('/plotRating').once('value').then(snapshot => { 
+            const data = snapshot.val()
+            if (!data) {
+                alert('Jarvis: something is wrong');
+                return;
+            } else {
+                this.setState(state => ({
+                plotRating: data
+                }));
+        }})
     };
     accessGenre (search) {
-        firebase
-                .database()
-                .ref('/books')
-                .child(search)
-                .child('/genre')
-                .once('value')
-                .then(snapshot =>{
-                    const genre = snapshot.val();
-                    () => this.setState ({
-                        genre: genre
-                    });
-                })
+        firebase.database().ref('/books').child(search).child('/genre').once('value').then(snapshot => { 
+            const data = snapshot.val()
+            if (!data) {
+                alert('Jarvis: something is wrong');
+                return;
+            } else {
+                this.setState(state => ({
+                genre: data
+                }));
+        }})
     };
     accessPages (search) {
-        firebase
-                .database()
-                .ref('/books')
-                .child(search)
-                .child('/pages')
-                .once('value')
-                .then(snapshot =>{
-                    () => this.setState ({
-                        pages: snapshot.val()
-                    });
-                })
+        firebase.database().ref('/books').child(search).child('/pages').once('value').then(snapshot => { 
+            const data = snapshot.val()
+            if (!data) {
+                alert('Jarvis: something is wrong');
+                return;
+            } else {
+                this.setState(state => ({
+                pages: data
+                }));
+        }})
     };
     accessAge (search) {
-        firebase
-                .database()
-                .ref('/books')
-                .child(search)
-                .child('/age')
-                .once('value')
-                .then(function(snapshot) {
-                    const age = snapshot.val();
-                    () => this.setState ({
-                        age: age
-                    });
-                })
+        firebase.database().ref('/books').child(search).child('/age').once('value').then(snapshot => { 
+            const data = snapshot.val()
+            if (!data) {
+                alert('Jarvis: something is wrong');
+                return;
+            } else {
+                this.setState(state => ({
+                age: data
+                }));
+        }})
     };
     
 
@@ -242,14 +228,14 @@ export class SearchScreen extends React.Component {
                                                 .child(search)
                                                 .update({difficultyTotal: difficultyAction,
                                                     difficulty: difficultyAction2})
-                                                 })
+                                                 }
                                                 
                                                  , () => this.setState(state =>({
                                                     rating: "", 
                                                     plotRating: "", 
                                                     difficulty: "", 
                                                     interest: ""
-                                                }))
+                                    })))
                                                 alert(search + ' has been reviewed.')
                             
         })}; 
@@ -266,17 +252,6 @@ export class SearchScreen extends React.Component {
             review: 'block',
             search: this.state.search
     }));
-    functionCombined = (search) => {
-        this.accessAuthor(search), 
-        this.accessInterest(search),
-        this.accessDifficulty(search),
-        this.accessRating(search),
-        this.accessPlotRating(search), 
-        this.accessGenre(search),
-        this.accessPages(search), 
-        this.accessAge(search),
-        this.details;
-    };
 searchBook (search) {
     firebase.database().ref('/books').child(search).once('value').then(snapshot => { 
         if (snapshot.val() === null ) {
@@ -379,18 +354,18 @@ searchBook (search) {
                                 </View>
                                     <View style={styles.resultDivide2}>
                                     <TouchableHighlight
-                                        onPress={() => this.functionCombined(this.state.search)/**{ this.accessAuthor(this.state.search); this.accessInterest(this.state.search);
+                                        //onPress={this.details}
+                                        onPress={() => {this.details(); this.accessAuthor(this.state.search); this.accessInterest(this.state.search);
                                             this.accessDifficulty(this.state.search); this.accessRating(this.state.search); 
                                             this.accessPlotRating(this.state.search); this.accessGenre(this.state.search); 
-                                        this.accessPages(this.state.search); this.accessAge(this.state.search) }*/}
-                                        onPress={this.details}
+                                            this.accessPages(this.state.search); this.accessAge(this.state.search)}}
                                     >
-                                        <View style={styles.resultButton}>
-                                            <Text style={styles.resultButtonText}>
-                                            Details
-                                            </Text>
-                                        </View>
-                                    </TouchableHighlight>
+                                    <View style={styles.resultButton}>
+                                        <Text style={styles.resultButtonText}>
+                                        Details
+                                        </Text>
+                                    </View>
+                                </TouchableHighlight>
                                     <TouchableHighlight
                                         onPress={this.review}
                                     >
