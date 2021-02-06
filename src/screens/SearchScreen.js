@@ -18,10 +18,10 @@ export class SearchScreen extends React.Component {
         // saves the user data that was passed in by the App when it opened this
         this.user = props.user;
         this.state = { 
-            initial: 'block',
-            searchBox: 'none',
-            details: 'none',
-            review: 'none',
+            initial: 'block', // Initial page which is indicated to be the default
+            searchBox: 'none', // Second page that doesn't appear at first
+            details: 'none', // Third page that doesn't appear at first
+            review: 'none', // Fourth page that doesn't appear at first
             search: "",
             interest: "",
             difficulty: "",
@@ -150,33 +150,34 @@ export class SearchScreen extends React.Component {
                 .database()
                 .ref('/books')
                 .child(search)
-                .child('/reviewCount')
+                .child('/reviewCount') // References the number of reviews that this book has gotten
                 .once('value')
                 .then(snapshot => {
-                    const number = parseFloat(snapshot.val());
-                    const action = number + 1;
+                    const number = parseFloat(snapshot.val()); // Makes the value into a decimal
+                    const action = number + 1; // Adds one more review and makes the variable 'action' equal to the number of reviews
                     firebase
                             .database()
                             .ref('/books')
-                            .child(search)
-                            .update({reviewCount: action})
+                            .child(search) // References the searched book in the database
+                            .update({reviewCount: action}) // Updates the value of the amount of reviews
 
                             firebase
                                     .database()
                                     .ref('/books')
                                     .child(search)
-                                    .child('/interestTotal')
+                                    .child('/interestTotal') // References the sum of all the scores that this book has gotten for the 'interest' category
                                     .once('value')
                                     .then(snapshot => {
                                         const interestNum = parseFloat(snapshot.val());
-                                        const interestAction = (interestNum + difficulty);
-                                        const interestAction2 = (interestNum + interest)/action;
+                                        const interestAction = (interestNum + interest); // Adds the value of this scores to the sum of all the scores
+                                        const interestAction2 = (interestNum + interest)/action; // Divides the sum of all scores by the number of 
+                                                                                                 // reviews to get the average score
                                         firebase
                                                 .database()
                                                 .ref('/books')
                                                 .child(search)
                                                 .update({interestTotal: interestAction, 
-                                                    interest: interestAction2})
+                                                    interest: interestAction2}) // Updates the value of the variable 'interest' and 'interestTotal' in the database 
                             }),
                             firebase
                                     .database()
@@ -186,7 +187,7 @@ export class SearchScreen extends React.Component {
                                     .once('value')
                                     .then(snapshot => {
                                         const ratingNum = parseFloat(snapshot.val());
-                                        const ratingAction = (ratingNum + difficulty);
+                                        const ratingAction = (ratingNum + rating);
                                         const ratingAction2 = (ratingNum + rating)/action;
                                         firebase
                                                 .database()
@@ -203,7 +204,7 @@ export class SearchScreen extends React.Component {
                                     .once('value')
                                     .then(snapshot => {
                                         const plotNum = parseFloat(snapshot.val());
-                                        const plotAction = (plotNum + difficulty);
+                                        const plotAction = (plotNum + plotRating);
                                         const plotAction2 = (plotNum + plotRating)/action;
                                         firebase
                                                 .database()
@@ -240,9 +241,9 @@ export class SearchScreen extends React.Component {
                             
         })}; 
     details = () => this.setState(state => ({
-            initial: 'none',
+            initial: 'none', // Indicates that the page doesn't appear
             searchBox: 'none',
-            details: 'block',
+            details: 'block', // Makes this page appear instead
             review: 'none'
     }));
     review = () => this.setState(state => ({
@@ -364,7 +365,6 @@ searchBook (search) {
                                 </View>
                                     <View style={styles.resultDivide2}>
                                     <TouchableHighlight
-                                        //onPress={this.details}
                                         onPress={() => {this.details(); this.accessAuthor(this.state.search); this.accessInterest(this.state.search);
                                             this.accessDifficulty(this.state.search); this.accessRating(this.state.search); 
                                             this.accessPlotRating(this.state.search); this.accessGenre(this.state.search); 

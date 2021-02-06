@@ -56,6 +56,8 @@ export default class App extends React.Component {
               // if there is a user, load the regular screens, starting with Home.
               // this one looks different because we have to pass the user
               // data to the home screen. You can add more screens here by copying this.
+              
+              // List of stack screens which can be referenced with the given name
               <>
               <Stack.Screen name="Home">
                 {props => <HomeScreen {...props} user={this.state.user} />}

@@ -44,12 +44,18 @@ addBook (title, author, genre, pages, rating, plotRating, age, difficulty, inter
     if (!title) {
         return;
     }
-    const ref = firebase.database().ref('/books').child(title).child('/genre');
-    ref.on('value', snapshot => {
-        const situation = snapshot.exists();
-    if (situation == false) {
-        firebase.database().ref('/books').child(title).update({
-            author: author,
+    const ref = firebase
+                        .database() //References the database in general
+                        .ref('/books') // References the section called 'books' within the database
+                        .child(title) // Variable 'title' references the book the user is trying to add
+                        .child('/genre'); // Within this specific book, it looks at the value of 'genre'
+    ref
+        .on('value', snapshot => { //If there is a value it will perform te follwing
+        const situation = snapshot.exists(); //Checks if there is a value
+    if (situation == false) { // If it's false, then there isn't a value 
+                              //and the book can be added to the database
+        firebase.database().ref('/books').child(title).update({ // Adds the following data to the database
+            author: author,                                     // This data was inputted by the user
             genre: genre, 
             pages: pages, 
             rating: rating, 
@@ -82,8 +88,6 @@ addBook (title, author, genre, pages, rating, plotRating, age, difficulty, inter
             // Success
           }
         }
-    //});
-    // firebase.database().ref('/books').child(key).remove();
     alert(title + ' has been added!');
         
     } else if (situation == true) {
@@ -100,50 +104,10 @@ addBook (title, author, genre, pages, rating, plotRating, age, difficulty, inter
             interest: "", 
             notPages: ""
     });
-
-   /**  const newBook = firebase.database().ref().child("/books").push();
-    const key = newBook.key;
-    firebase
-            .auth()
-            newBook
-            .catch(error => {
-                alert(error)
-            })
-            .then(response => {
-                if (!title) return;
-                const titleName = {
-                    title: title
-                }
-                const bookData = {
-                    author: author,
-                    genre: genre, 
-                    pages: pages, 
-                    rating: rating, 
-                    ratingTotal: rating,
-                    plotRating: plotRating, 
-                    plotRatingTotal: plotRating,
-                    age: age, 
-                    difficulty: difficulty, 
-                    difficultyTotal: difficulty,
-                    interest: interest, 
-                    interestTotal: interest,
-                    notPages: notPages, 
-                    finished: finished,
-                    reviewCount: 1
-                }
-                firebase.database()
-                    newBook.set(bookData);
-                    
-            }) */
-            /** const query = firebase.database().ref('/books');
-            query.once( 'value', data => {
-            data.forEach(userSnapshot => { */
-
         
     }
 })
-};;//);;
-//};
+};;
       
     render () {
         return (

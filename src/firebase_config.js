@@ -2,7 +2,7 @@ import * as firebase from 'firebase';
 import '@firebase/auth';
 import '@firebase/database';
 
-const firebaseConfig = {
+const firebaseConfig = { // Keys that match those in my firebase project, they connect my code to the database
     apiKey: "AIzaSyCWSezW_UHOulJ0I_DPFdMl3QUDZnnIx34",
     authDomain: "book-sn.firebaseapp.com",
     databaseURL: "https://book-sn.firebaseio.com",

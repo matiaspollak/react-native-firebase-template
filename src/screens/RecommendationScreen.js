@@ -48,48 +48,36 @@ constructor(props) {
             
 }
 componentDidMount () {
-   /** const list = [];
-    for (let i = 0; i < list.length; i++) {
-
-    }
-    const ref = firebase.database().ref('/books');
-    ref.orderByChild("email").equalTo(emailID).once("value", (usersSnapshot ) => {
-        let sent_request = [];
-    
-        usersSnapshot.forEach((userSnapshot) => {
-    
-            userSnapshot.child("send_request").forEach((requestSnapshot) => {
-                sent_request.push(requestSnapshot.key);
-                // OR: sent_request.push(requestSnapshot.child("user"key").val());
-    
-            });
-    
-        });
-    }); */
     firebase
-            .database()
+            .database() 
             .ref()
-            .child('/books')
+            .child('/books') // References the 'books section in the database
             .once('value', snapshot => {
-                //for (let i = 0; i < list1.length; i++) {
-                const data = snapshot.val();
-                if (snapshot.val()) {
+                const data = snapshot.val(); // Saves the book titles into a array variable 
+                if (snapshot.val()) { // Checks if there are books
                             this.setState(state => ({
-                                recommendations: Object.keys(data)
-                            }));
-                } 
-            //}
+                                recommendations: Object.keys(data) /**  Sets the state of 'recommendations'   
+                                                                        to an array that contains all 
+                                                                        the book titles */
+                            }));                                   
+                }                                                  
         }) 
 };
 recommendation (genre, rating, age, plotRating, interest, difficulty, recommendations) {
-for (let i = 0; i < recommendations.length; i++) {
-    firebase.database().ref('/books').child(recommendations[i]).child('/genre').once('value').then(snapshot =>{
-        const genre1 = snapshot.val();
-        if (genre1 !== genre) {
+for (let i = 0; i < recommendations.length; i++) { // Loops 'i' from 0 to the end of the array with book titles
+    firebase
+            .database()
+            .ref('/books')
+            .child(recommendations[i]) // References the database section for the first book in the array
+            .child('/genre') // References the genre of that book
+            .once('value') // If there is a value it will continue
+            .then(snapshot =>{
+        const genre1 = snapshot.val(); // Takes a snapshot of the value and sets that as the value of 'genre1'
+        if (genre1 !== genre) { // If the book's genre doesn't match that required by the user 
             const list = recommendations;
-            list.splice(i, 1);
+            list.splice(i, 1); // Eliminates that book from the array
             this.setState(state => ({
-                recommendations: list
+                recommendations: list // Sets the state of 'recommendation' to the new array
             }));
         }
         for (let r = 0; r < recommendations.length; r++) {
