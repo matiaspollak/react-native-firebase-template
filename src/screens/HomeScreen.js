@@ -27,30 +27,29 @@ export class HomeScreen extends React.Component {
                         style={styles.background}
                         source={{ uri: 'https://wallpaperaccess.com/full/2862101.jpg' }}
                     >
-                <View style={styles.row}>
-                <Text style={styles.title}>
-                    BookSN
-                </Text>         
-                <TouchableHighlight
-                    onPress={this.goHome}
-                >
-                    <View style={styles.secondButton}>
-                        <Text style={styles.buttonText}>
-                        Home Page
-                        </Text>
-                    </View>
-                </TouchableHighlight>
+                <View style={styles.row}> 
+                    <Text style={styles.title}>  
+                        BookSN
+                    </Text>         
+                    <TouchableHighlight  
+                        onPress={this.goHome} 
+                    >
+                        <View style={styles.secondButton}> 
+                            <Text style={styles.buttonText}> 
+                            Home Page
+                            </Text>
+                        </View>
+                    </TouchableHighlight> 
 
-                <TouchableHighlight
-                    onPress={this.goProfile}
-                >
-                    <View style={styles.secondButton}>
-                        <Text style={styles.buttonText}>
-                        Profile
-                        </Text>
-                    </View>
-                </TouchableHighlight>
-
+                    <TouchableHighlight 
+                        onPress={this.goProfile}
+                    >
+                        <View style={styles.secondButton}>
+                            <Text style={styles.buttonText}>
+                            Profile
+                            </Text>
+                        </View>
+                    </TouchableHighlight> 
                 <TouchableHighlight
                     onPress={this.goAdd}
                 >

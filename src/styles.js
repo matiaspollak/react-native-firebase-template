@@ -10,19 +10,45 @@ export default StyleSheet.create({
         height: deviceHeight,
         width: deviceWidth
     },
-    title: {
-        fontSize: 80,
-        fontFamily:'futura',
-        color: 'white'
-    },
-    text: {
+  title: { 
+        fontSize: 80, // Parameter, sets the size of letters 
+        fontFamily:'futura', // Sets font
+        color: 'white' // Sets color
+  },
+  row: {
+      flexDirection: 'row', // Sets if the elements inside this component will be arranged in a row or in a column
+      width: deviceWidth, // Sets width of component in relation to the user's screen size
+      height: deviceHeight/10, // Sets height of component in relation to the user's screen size
+      justifyContent: 'center', // Sets all elements inside to be vertically centered
+      textAlign: 'center', // Aligns the text to the center of the component
+      alignItems: 'center', // Sets all elements inside to be horizontally centered
+      marginTop: 10 // Creates a margin for the element as a whole
+  },
+  text: {
         fontSize: 20,
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        paddingLeft: 16
-    },
+        marginTop: 10, // Creates a margin from the top of the text to the bottom of the element above
+        marginBottom: 10, // Creates a margin from the bottom of the text to the bottom of the element below
+        marginLeft: 30, // Creates a margin from the element to the left
+        marginRight: 30, //Creates a margin from the element to the right
+        paddingLeft: 16 // Creates space from all sides between this element and those surrounding it
+  },
+  secondButton: {
+      height: deviceHeight/10, 
+      width: deviceWidth/10,
+      backgroundColor: 'gray', // Color of the buttom
+      justifyContent: 'center',
+      textAlign: 'center',
+      alignItems: 'center',
+      borderRadius: 4, // Curves the corners of the button
+      borderColor: 'gray', // Color of the border
+      borderWidth: 2, // Size of the border
+      margin: 4,
+},
+buttonText: {
+    fontSize: 16,
+    fontWeight: "bold", // Bolds the text
+    fontFamily: 'futura'
+},
     textInput: {
         height: deviceHeight/18,
         width: deviceWidth*9/10,
@@ -62,11 +88,6 @@ export default StyleSheet.create({
         fontSize: 16,
         fontWeight: "bold"
     },
-    buttonText: {
-        fontSize: 16,
-        fontWeight: "bold",
-        fontFamily: 'futura'
-    },
     buttonText2: {
         fontSize: 16,
         marginRight: 10,
@@ -93,15 +114,6 @@ export default StyleSheet.create({
         fontWeight: "bold",
         fontSize: 16
     },
-    row: {
-        flexDirection: 'row',
-        width: deviceWidth,
-        height: deviceHeight/10,
-        justifyContent: 'center',
-        textAlign: 'center',
-        alignItems: 'center',
-        marginTop: 10
-    },
     column: {
         flexDirection: 'column',
         width: deviceWidth/2,
@@ -109,18 +121,6 @@ export default StyleSheet.create({
         justifyContent: 'center',
         textAlign: 'center',
         alignItems: 'center',
-    },
-    secondButton: {
-        height: deviceHeight/10, 
-        width: deviceWidth/10,
-        backgroundColor: 'gray',
-        justifyContent: 'center',
-        textAlign: 'center',
-        alignItems: 'center',
-        borderRadius: 4,
-        borderColor: 'gray',
-        borderWidth: 2,
-        margin: 4,
     },
     secondButton3: {
       height: deviceHeight/9, 
