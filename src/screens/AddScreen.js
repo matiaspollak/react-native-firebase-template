@@ -32,15 +32,13 @@ constructor(props) {
             difficultyTotal: null,
             interest: null,
             interestTotal: null,
-            notPages: null,
-            finished: true,
             reviewCount: 1
           };
           this.addBook = this.addBook.bind(this);
 }
 
 
-addBook (title, author, genre, pages, rating, plotRating, age, difficulty, interest, notPages, finished) {
+addBook (title, author, genre, pages, rating, plotRating, age, difficulty, interest) {
     if (!title) {
         return;
     }
@@ -67,8 +65,6 @@ addBook (title, author, genre, pages, rating, plotRating, age, difficulty, inter
             difficultyTotal: difficulty,
             interest: interest, 
             interestTotal: interest,
-            notPages: notPages, 
-            finished: finished,
             reviewCount: 1
         }, () => this.setState({
             title: "",
@@ -79,8 +75,7 @@ addBook (title, author, genre, pages, rating, plotRating, age, difficulty, inter
             plotRating: "", 
             age: "", 
             difficulty: "", 
-            interest: "", 
-            notPages: ""
+            interest: ""
     })), (error) => {
           if (error) {
             console.log(error.message);
@@ -91,7 +86,6 @@ addBook (title, author, genre, pages, rating, plotRating, age, difficulty, inter
     alert(title + ' has been added!');
         
     } else if (situation == true) {
-        alert('This book has already been added, you can choose to review it in the Search for books/review section.');
         this.setState({
             title: "",
             author: "",
@@ -253,29 +247,10 @@ addBook (title, author, genre, pages, rating, plotRating, age, difficulty, inter
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
-                <View style={styles.row3}>
-                <Text style={styles.buttonText2}>
-                    Click the button if you have not finished the book       
-                </Text>
-                <Switch
-                    onValueChange={() => this.setState(state => ({
-                        finished: !state.finished}))}
-                    value={this.state.finished}
-                />
-                </View>
-                <TextInput
-                    placeholder='Page where the book was left (if the last button was clicked)'
-                    style={styles.textInput}
-                    placeholderTextColor="#aaaaaa"
-                    onChangeText={(text) => this.setState({ notPages: text })}
-                    value={this.state.notPages}
-                    underlineColorAndroid="transparent"
-                    autoCapitalize="none"
-                />
                 <TouchableHighlight
                     onPress={() => this.addBook(this.state.title, this.state.author, this.state.genre, this.state.pages,
                         parseInt(this.state.rating), parseInt(this.state.plotRating), parseInt(this.state.age), 
-                        parseInt(this.state.difficulty), parseInt(this.state.interest), this.state.notPages, this.state.finished)}
+                        parseInt(this.state.difficulty), parseInt(this.state.interest))}
                 >
                     <View style={styles.secondButton}>
                         <Text style={styles.buttonText}>
